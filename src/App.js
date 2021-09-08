@@ -5,7 +5,7 @@ function App() {
   localStorage.clear()
   const appid = '973497d219f1c7351022d3f0bbbb2724';
   const [weather, setWeather] = useState(null);
-  // const [city, setCity] = useState(null);
+  const [city, setCity] = useState(null);
   function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
@@ -24,23 +24,31 @@ function App() {
   }
   getLocation()
   useEffect(() => {
-    var lat = JSON.parse(localStorage.getItem('lat'))
-    var long = JSON.parse(localStorage.getItem('long'))
+    if (city != null) {
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${appid}&units=metric`)
+        .then(function (response) {
+          const newWeather = response.data
+          setWeather(newWeather)
+        })
+        .catch((error) => {
+          console.log('error occured ', error);
+        })
+    }
+    else {
+      var lat = JSON.parse(localStorage.getItem('lat'))
+      var long = JSON.parse(localStorage.getItem('long'))
 
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${appid}&units=metric`)
-      .then(function (response) {
-        const newWeather = response.data
-        // console.log(newWeather);
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${appid}&units=metric`)
+        .then(function (response) {
+          const newWeather = response.data
+          setWeather(newWeather)
+        })
+        .catch((error) => {
+          console.log('error occured ', error);
+        })
+    }
 
-
-        // console.log(`Temperature of ${city} is  ${newWeather.main.temp} `);
-        setWeather(newWeather)
-      })
-      .catch((error) => {
-        console.log('error occured ', error);
-      })
-
-  }, [])
+  }, [city])
 
 
   return (
@@ -48,6 +56,17 @@ function App() {
       <div>
         <h1>Weather App</h1>
         <br />
+        <input type="text" name="city" id="city" />
+        <button
+        onClick= {()=>{
+          setCity(document.getElementById('city').value)
+        }}
+        >
+          Search</button>
+        <br /> <br />
+        <br /> <br />
+        <br /> <br />
+
         {
           (weather !== null) ?
             <>
@@ -59,6 +78,7 @@ function App() {
             :
             <h4>Weather Updates</h4>
         }
+
         <footer> &copy; QambarAli</footer>
       </div>
     </div>
