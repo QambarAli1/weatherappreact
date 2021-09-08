@@ -1,0 +1,66 @@
+body{
+  margin: 0;
+  padding: 0;
+  background-color: teal;
+}
+.app-main{
+  color: black;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#city{
+  width: 150px;
+  height: 20px;
+}
+
+.app-main div{
+  width: 70%;
+  padding: 20px;
+  border: 2px solid black;
+  text-align: center;
+  margin-top: 20px;
+  height: 450px;
+  background-image: url('images/sunny.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: rgb(8, 8, 8);
+  font-weight: bold;
+  border-radius: 35px 35px;
+}
+.temp{
+  font-size: 35px;
+}
+
+.app-main button{
+  margin-left: 10px;
+  padding: 5px;
+  background-color: black;
+  color: beige;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 12px 12px;
+}
+
+footer{
+  color: aliceblue;
+  position: fixed;
+  top: 470px;
+  /* right: 10; */
+  /* bottom: 20px; */
+}
+
+@media only screen and (min-width: 600px) {
+  .app-main div{
+    width: 30%;
+  }
+}
+
+
+@media only screen and (min-width: 1000px) {
+  .app-main div{
+    width: 20%;
+  }
+}
+
