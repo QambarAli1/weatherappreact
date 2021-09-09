@@ -2,6 +2,12 @@ body{
   margin: 0;
   padding: 0;
   background-color: teal;
+  background-image: url('images/temp.jpg');
+  background-repeat: no-repeat;
+  /* background-position: center; */
+  background-size: cover;
+  /* background-image: url('https://source.unsplash.com/1600x3000/?rain,night'); */
+
 }
 .app-main{
   color: black;
@@ -22,7 +28,8 @@ body{
   text-align: center;
   margin-top: 20px;
   height: 450px;
-  background-image: url('images/sunny.jpg');
+  background-image: url('images/temp.jpg');
+  /* background-image: url('https://source.unsplash.com/1600x3000/?rain,night'); */
   background-repeat: no-repeat;
   background-size: cover;
   color: rgb(250, 232, 232);
@@ -33,22 +40,14 @@ body{
   font-size: 35px;
 }
 
-.app-main button{
-  margin-left: 10px;
-  padding: 5px;
-  background-color: black;
-  color: beige;
-  font-size: 15px;
-  font-weight: bold;
-  border-radius: 12px 12px;
+span , h2{
+  line-height: 2px;
 }
 
 footer{
   color: aliceblue;
   position: fixed;
   top: 470px;
-  /* right: 10; */
-  /* bottom: 20px; */
 }
 
 @media only screen and (max-width: 600px) {
@@ -58,7 +57,7 @@ footer{
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-    background-color: rgb(23, 27, 27);
+    background-color: rgb(39, 41, 41);
     
   }
   .app-main div{

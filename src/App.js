@@ -19,7 +19,7 @@ function App() {
           console.log('error occured ', error);
         })
     }
-    else {
+    if (city==null){
       function getLocation() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(showPosition);
@@ -28,7 +28,7 @@ function App() {
         }
       }
       function showPosition(position) {
-        console.log(`latitude = ${position.coords.latitude}`);
+        // console.log(`latitude = ${position.coords.latitude}`);
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${appid}&units=metric`)
           .then(function (response) {
             const newWeather = response.data
@@ -39,22 +39,20 @@ function App() {
           })
       }
       getLocation()
+      if (weather != null) {
+        var descp = weather.weather[0].description
+        console.log(weather.weather[0].description);
+        if (descp ==='overcast clouds' || descp === 'smoke') {
+          console.log('Raining');
+        }
+        if (descp != 'cloud') {
+          console.log(' ! rain');
+          var newiframeSrc = 'Hello'
+          setiframesrc(newiframeSrc)
+        }
+      }
+      console.log(iframesrc);
     }
-    if (weather != null) {
-      var descp = weather.weather[0].description
-      console.log(weather.weather[0].description);
-    }
-    if(descp=='overcast clouds' || descp=='smoke'){
-      console.log('Raining');
-    }
-    if(descp!='cloud'){
-      console.log(' ! rain');
-      var newiframeSrc = 'Hello'
-      setiframesrc(newiframeSrc)
-    }
-    console.log(iframesrc);
-
-
   }, [city])
 
 
@@ -63,13 +61,12 @@ function App() {
       <div>
         <h1>Weather App</h1>
         <br />
-        <input type="text" name="city" id="city" />
-        <button
-          onClick={() => {
+        <input type="text" name="city" id="city" onChange={() => {
+          setInterval(() => {
             setCity(document.getElementById('city').value)
-          }}
-        >
-          Search</button>
+          }, 1000);
+        }} />
+
         <br /> <br />
         <br /> <br />
         <br /> <br />
