@@ -62,7 +62,7 @@ footer{
     
   }
   .app-main div{
-    background-image: none;
+    background-image: none !important;
     background-size: cover;
     border: none;
   }
