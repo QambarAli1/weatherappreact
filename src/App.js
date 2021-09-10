@@ -9,17 +9,7 @@ function App() {
 
   // getLocation()
   useEffect(() => {
-    if (city != null) {
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${appid}&units=metric`)
-        .then(function (response) {
-          const newWeather = response.data
-          setWeather(newWeather)
-        })
-        .catch((error) => {
-          console.log('error occured ', error);
-        })
-    }
-    if (city==null && weather!=null){
+    if (document.getElementById('city').value == '' || city == null) {
       function getLocation() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(showPosition);
@@ -38,24 +28,34 @@ function App() {
             console.log('error occured ', error);
           })
       }
-      getLocation()
-      if (weather != null) {
-        var descp = weather.weather[0].description
-        console.log(weather.weather[0].description);
-        if (descp ==='overcast clouds' || descp === 'smoke') {
-          console.log('Raining');
-        }
-        if (descp != 'cloud') {
-          console.log(' ! rain');
-          var newiframeSrc = 'Hello'
-          setiframesrc(newiframeSrc)
-        }
-      }
-      console.log(iframesrc);
+    }
+
+    if (city != null) {
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${appid}&units=metric`)
+        .then(function (response) {
+          const newWeather = response.data
+          setWeather(newWeather)
+          if (weather != null) {
+            var descp = weather.weather[0].description
+            console.log(weather.weather[0].description);
+            if (descp === 'overcast clouds' || descp === 'smoke') {
+              console.log('Raining');
+            }
+            if (descp !== 'cloud') {
+              console.log(' ! rain');
+              var newiframeSrc = 'Hello'
+              setiframesrc(newiframeSrc)
+            }
+            if (iframesrc != null) {
+              console.log(iframesrc);
+            }
+          }
+        })
+        .catch((error) => {
+          console.log('error occured ', error);
+        })
     }
   }, [city])
-
-
   return (
     <div className='app-main'>
       <div>
