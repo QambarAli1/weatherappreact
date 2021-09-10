@@ -52,18 +52,17 @@ footer{
 
 @media only screen and (max-width: 600px) {
   body{
-    /* background-image: url('https://source.unsplash.com/1600x3000/?cloud,sunny'); */
-    background-image: url('images/temp.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    background-color: rgb(39, 41, 41);
-    
+    background-color: rgba(27, 25, 23, 0.945);
   }
   .app-main div{
-    background-image: none !important;
+    /* background-image: url('images/temp.jpg');
+    background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
+    background-blend-mode: lighten; */
     border: none;
+    width: 100%;
+    height: auto;
   }
 }
 @media only screen and (min-width: 600px) {
