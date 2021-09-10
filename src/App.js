@@ -6,10 +6,46 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState(null);
   const [iframesrc, setiframesrc] = useState(null)
+  var descWeather = () => {
+    if (weather !== null) {
+      setTimeout(() => {
+        var descp = weather.weather[0].description
+      var lcDescp = descp.toLowerCase()
+      var newiframeSrc;
+      // console.log('lsDesc ',lcDescp);
+      // console.log(weather.weather[0].description);
+      if (lcDescp.indexOf('rain') !== -1) {
+        console.log('Raining');
+        newiframeSrc = 'rain'
+        setiframesrc(newiframeSrc)
+      }
+      if (lcDescp.indexOf('clous') !== -1) {
+        console.log('cloud');
+        newiframeSrc = 'cloud'
+        setiframesrc(newiframeSrc)
+      }
+      if (lcDescp.indexOf('drizzle') !== -1) {
+        console.log('drizzle');
+        newiframeSrc = 'drizzle'
+        setiframesrc(newiframeSrc)
+      }
+      if (lcDescp.indexOf('sunny') !== -1) {
+        console.log('sunny');
+        newiframeSrc = 'sunny'
+        setiframesrc(newiframeSrc)
+      }
+
+      // if (iframesrc != null) {
+      //   console.log(iframesrc);
+      // }
+      }, 1000);
+
+    }
+  }
 
   // getLocation()
   useEffect(() => {
-    if (document.getElementById('city').value == '' || city == null) {
+    if (city === null) {
       function getLocation() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(showPosition);
@@ -23,11 +59,15 @@ function App() {
           .then(function (response) {
             const newWeather = response.data
             setWeather(newWeather)
+            console.log('weather with lat long', newWeather);
+
           })
           .catch((error) => {
             console.log('error occured ', error);
           })
+        descWeather()
       }
+      getLocation()
     }
 
     if (city != null) {
@@ -35,27 +75,13 @@ function App() {
         .then(function (response) {
           const newWeather = response.data
           setWeather(newWeather)
-          if (weather != null) {
-            var descp = weather.weather[0].description
-            console.log(weather.weather[0].description);
-            if (descp === 'overcast clouds' || descp === 'smoke') {
-              console.log('Raining');
-            }
-            if (descp !== 'cloud') {
-              console.log(' ! rain');
-              var newiframeSrc = 'Hello'
-              setiframesrc(newiframeSrc)
-            }
-            if (iframesrc != null) {
-              console.log(iframesrc);
-            }
-          }
         })
         .catch((error) => {
           console.log('error occured ', error);
         })
+      descWeather()
     }
-  }, [city])
+  }, [city, iframesrc])
   return (
     <div className='app-main'>
       <div>
