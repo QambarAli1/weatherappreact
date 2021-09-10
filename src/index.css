@@ -27,7 +27,7 @@ body{
   border: 2px solid black;
   text-align: center;
   margin-top: 20px;
-  height: 450px;
+  height: 500px;
   background-image: url('images/temp.jpg');
   /* background-image: url('https://source.unsplash.com/1600x3000/?rain,night'); */
   background-repeat: no-repeat;
@@ -52,17 +52,15 @@ footer{
 
 @media only screen and (max-width: 600px) {
   body{
-    background-color: rgba(27, 25, 23, 0.945);
+    background-color: rgba(160, 94, 29, 0.945);
+  }
+  .app-main{
+    width: 100%;
+    height: 640px !important;
   }
   .app-main div{
-    /* background-image: url('images/temp.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-blend-mode: lighten; */
     border: none;
-    width: 100%;
-    height: auto;
+    background-image: none;
   }
 }
 @media only screen and (min-width: 600px) {

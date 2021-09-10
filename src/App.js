@@ -19,7 +19,7 @@ function App() {
           console.log('error occured ', error);
         })
     }
-    if (city==null){
+    if (city==null && weather!=null){
       function getLocation() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(showPosition);
