@@ -10,34 +10,34 @@ function App() {
     if (weather !== null) {
       setTimeout(() => {
         var descp = weather.weather[0].description
-      var lcDescp = descp.toLowerCase()
-      var newiframeSrc;
-      // console.log('lsDesc ',lcDescp);
-      // console.log(weather.weather[0].description);
-      if (lcDescp.indexOf('rain') !== -1) {
-        console.log('Raining');
-        newiframeSrc = 'rain'
-        setiframesrc(newiframeSrc)
-      }
-      if (lcDescp.indexOf('clous') !== -1) {
-        console.log('cloud');
-        newiframeSrc = 'cloud'
-        setiframesrc(newiframeSrc)
-      }
-      if (lcDescp.indexOf('drizzle') !== -1) {
-        console.log('drizzle');
-        newiframeSrc = 'drizzle'
-        setiframesrc(newiframeSrc)
-      }
-      if (lcDescp.indexOf('sunny') !== -1) {
-        console.log('sunny');
-        newiframeSrc = 'sunny'
-        setiframesrc(newiframeSrc)
-      }
+        var lcDescp = descp.toLowerCase()
+        var newiframeSrc;
+        // console.log('lsDesc ',lcDescp);
+        // console.log(weather.weather[0].description);
+        if (lcDescp.indexOf('rain') !== -1) {
+          console.log('Raining');
+          newiframeSrc = 'rain'
+          setiframesrc(newiframeSrc)
+        }
+        if (lcDescp.indexOf('clous') !== -1) {
+          console.log('cloud');
+          newiframeSrc = 'cloud'
+          setiframesrc(newiframeSrc)
+        }
+        if (lcDescp.indexOf('drizzle') !== -1) {
+          console.log('drizzle');
+          newiframeSrc = 'drizzle'
+          setiframesrc(newiframeSrc)
+        }
+        if (lcDescp.indexOf('sunny') !== -1) {
+          console.log('sunny');
+          newiframeSrc = 'sunny'
+          setiframesrc(newiframeSrc)
+        }
 
-      // if (iframesrc != null) {
-      //   console.log(iframesrc);
-      // }
+        // if (iframesrc != null) {
+        //   console.log(iframesrc);
+        // }
       }, 1000);
 
     }
@@ -59,7 +59,7 @@ function App() {
           .then(function (response) {
             const newWeather = response.data
             setWeather(newWeather)
-            console.log('weather with lat long', newWeather);
+            // console.log('weather with lat long', newWeather);
 
           })
           .catch((error) => {
@@ -81,17 +81,16 @@ function App() {
         })
       descWeather()
     }
-  }, [city, iframesrc])
+  }, [city])
   return (
     <div className='app-main'>
       <div>
         <h1>Weather App</h1>
         <br />
-        <input type="text" name="city" id="city" onChange={() => {
-          setInterval(() => {
-            setCity(document.getElementById('city').value)
-          }, 1000);
-        }} />
+        <input type="text" name="city" id="city" />
+        <button onClick={() => {
+          setCity(document.getElementById('city').value)
+        }} >Search</button>
 
         <br /> <br />
         <br /> <br />
@@ -100,13 +99,14 @@ function App() {
         {
           (weather !== null) ?
             <>
+
               <h3> {weather.name} </h3>
               <span className='temp'>{weather.main.temp} <sup>o</sup> C</span>
               <h2> {weather.weather[0].description}  <br />
               </h2>
             </>
             :
-            <h4>Weather Updates</h4>
+            <h4>Loading Weather...</h4>
         }
 
         <footer> &copy; QambarAli</footer>
